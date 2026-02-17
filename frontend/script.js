@@ -24,10 +24,18 @@ function speakWithMaleVoice(text) {
 }
 
 window.askQuestion = async function () {
-  const question = document.getElementById("question").value;
+  const questionInput = document.getElementById("question");
+  const question = questionInput.value;
+  
+  // 1. Check if empty
   if (!question) return;
+
+  // 2. CLEAR INPUT IMMEDIATELY
+  questionInput.value = ""; 
+
   const answerDiv = document.getElementById("answer");
   answerDiv.innerText = "Thinking...";
+
   try {
     const response = await fetch("https://ambedkar-api.onrender.com/ask", {
         method: "POST",
@@ -36,6 +44,7 @@ window.askQuestion = async function () {
     });
     const data = await response.json();
     const answer = data.answer || "No answer returned";
+    
     answerDiv.innerText = answer;
     speakWithMaleVoice(answer);
   } catch (err) {
