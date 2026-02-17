@@ -22,7 +22,7 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll on mobile */
     }
 
     /* HEADER */
@@ -53,7 +53,7 @@
       gap: 30px;
       padding: 20px 40px;
       align-items: center;
-      margin-bottom: 80px; /* Space for the fixed chat bar */
+      margin-bottom: 80px;
     }
 
     /* LEFT TEXT PANEL */
@@ -63,23 +63,19 @@
       align-items: center;
     }
 
- .answer {
-  max-width: 600px;
-  max-height: 65vh;       
-  overflow-y: auto;       
-  padding-right: 15px;    
-  
+    .answer {
+      max-width: 600px;
+      max-height: 65vh;       
+      overflow-y: auto;       
+      padding-right: 15px;    
+      line-height: 1.8;
+      font-size: 18px;
+      color: #d7dedd;
+      opacity: 0.95;
+    }
 
-  line-height: 1.8;
-  font-size: 18px;
-  color: #d7dedd;
-  opacity: 0.95;
-}
-
-
-.answer::-webkit-scrollbar { width: 8px; }
-.answer::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-.answer::-webkit-scrollbar-track { background: transparent; }
+    .answer::-webkit-scrollbar { width: 6px; }
+    .answer::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
 
     /* RIGHT AVATAR PANEL */
     .avatar-panel {
@@ -102,9 +98,9 @@
       display: flex;
       gap: 10px;
       padding: 15px 40px;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.9);
       position: fixed;
-      bottom: 60px; /* Sits above the team footer */
+      bottom: 60px;
       left: 0;
       right: 0;
       border-top: 1px solid rgba(255,255,255,0.1);
@@ -131,11 +127,6 @@
       background: #2c2b2b;
       color: #a29f9f;
       font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .chat-bar button:hover {
-      background: #3d3c3c;
     }
 
     /* TEAM FOOTER SECTION */
@@ -176,16 +167,43 @@
       white-space: nowrap;
     }
 
-    /* MOBILE ADJUSTMENTS */
+    /* --- MOBILE RESPONSIVENESS (FIXES) --- */
     @media (max-width: 900px) {
-      .main {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-bottom: 200px;
+      body {
+        overflow-y: auto; /* Allow body scroll on mobile if needed */
       }
-      .answer { margin: auto; }
-      .header { width: 90%; }
-      .chat-bar { bottom: 100px; }
+      .header {
+        width: 90%;
+        margin-top: 10px;
+      }
+      .header h1 {
+        font-size: 18px;
+      }
+      .main {
+        grid-template-columns: 1fr; /* Stack vertically */
+        padding: 20px;
+        margin-bottom: 180px; /* Space for fixed bars */
+        text-align: center;
+      }
+      .text-panel {
+        justify-content: center;
+      }
+      .answer {
+        max-height: 40vh; /* Don't let text take over the screen */
+        font-size: 16px;
+        margin: 0 auto;
+      }
+      #avatar-container {
+        max-width: 300px; /* Smaller avatar on phones */
+        height: 300px;
+      }
+      .chat-bar {
+        padding: 10px 15px;
+        bottom: 80px; /* Sit higher to avoid covering team footer */
+      }
+      .team-grid span {
+        font-size: 9px; /* Shrink font for mobile width */
+      }
     }
   </style>
 </head>
