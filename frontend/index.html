@@ -22,27 +22,37 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+      overflow-x: hidden;
     }
 
     /* HEADER */
     .header {
       background-color: #2c2b2b;
       color: #c3cbca;
-      width: 600px;
+      width: 650px; /* Slightly widened to fit subtitle nicely */
       border-radius: 20px;
-      padding: 14px 24px;
+      padding: 12px 24px;
       margin: 20px auto 0;
       display: flex;
+      flex-direction: column; /* Stack title and subtitle vertically */
       align-items: center;
       justify-content: center;
       z-index: 10;
+      text-align: center;
     }
 
     .header h1 {
       margin: 0;
       font-size: 24px;
       font-weight: 600;
+    }
+
+    /* NEW SUBTITLE CSS FOR DIAT ACKNOWLEDGEMENT */
+    .header .subtitle {
+      margin: 6px 0 0 0;
+      font-size: 13px;
+      color: #9f9f9f;
+      font-style: italic;
     }
 
     /* MAIN LAYOUT */
@@ -170,7 +180,7 @@
     /* --- MOBILE RESPONSIVENESS (FIXES) --- */
     @media (max-width: 900px) {
       body {
-        overflow-y: auto; /* Allow body scroll on mobile if needed */
+        overflow-y: auto;
       }
       .header {
         width: 90%;
@@ -179,30 +189,34 @@
       .header h1 {
         font-size: 18px;
       }
+      /* Ensure subtitle is readable on mobile */
+      .header .subtitle {
+        font-size: 11px; 
+      }
       .main {
-        grid-template-columns: 1fr; /* Stack vertically */
+        grid-template-columns: 1fr;
         padding: 20px;
-        margin-bottom: 180px; /* Space for fixed bars */
+        margin-bottom: 180px;
         text-align: center;
       }
       .text-panel {
         justify-content: center;
       }
       .answer {
-        max-height: 40vh; /* Don't let text take over the screen */
+        max-height: 40vh;
         font-size: 16px;
         margin: 0 auto;
       }
       #avatar-container {
-        max-width: 300px; /* Smaller avatar on phones */
+        max-width: 300px;
         height: 300px;
       }
       .chat-bar {
         padding: 10px 15px;
-        bottom: 80px; /* Sit higher to avoid covering team footer */
+        bottom: 80px;
       }
       .team-grid span {
-        font-size: 9px; /* Shrink font for mobile width */
+        font-size: 9px;
       }
     }
   </style>
@@ -212,6 +226,7 @@
   <header>
     <div class="header">
       <h1>Dr. B. R. Ambedkar AI Avatar</h1>
+      <p class="subtitle">Part of the internship with DIAT under the supervision of Prof. CRS Kumar</p>
     </div>
   </header>
 
