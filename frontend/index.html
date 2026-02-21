@@ -25,16 +25,38 @@
       overflow-x: hidden;
     }
 
+    /* FEEDBACK BUTTON */
+    .feedback-link {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background-color: #2c2b2b;
+      color: #c3cbca;
+      padding: 10px 18px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 100;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.3s;
+    }
+
+    .feedback-link:hover {
+      background-color: #3d3c3c;
+      color: white;
+    }
+
     /* HEADER */
     .header {
       background-color: #2c2b2b;
       color: #c3cbca;
-      width: 650px; /* Slightly widened to fit subtitle nicely */
+      width: 650px; 
       border-radius: 20px;
       padding: 12px 24px;
       margin: 20px auto 0;
       display: flex;
-      flex-direction: column; /* Stack title and subtitle vertically */
+      flex-direction: column; 
       align-items: center;
       justify-content: center;
       z-index: 10;
@@ -182,14 +204,22 @@
       body {
         overflow-y: auto;
       }
+      
+      /* Adjust feedback button for mobile */
+      .feedback-link {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
       .header {
         width: 90%;
-        margin-top: 10px;
+        margin-top: 50px; /* Push header down slightly so feedback button doesn't overlap */
       }
       .header h1 {
         font-size: 18px;
       }
-      /* Ensure subtitle is readable on mobile */
       .header .subtitle {
         font-size: 11px; 
       }
@@ -223,6 +253,8 @@
 </head>
 <body>
   
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3FXxkMdZb-nJAyb7RElZ6C-VLVp1Z2ZZqhljqniUadMKYkg/viewform?usp=publish-editor" target="_blank" class="feedback-link">Feedback</a>
+
   <header>
     <div class="header">
       <h1>Dr. B. R. Ambedkar AI Avatar</h1>
