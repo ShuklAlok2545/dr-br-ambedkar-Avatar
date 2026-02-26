@@ -69,7 +69,6 @@
       font-weight: 600;
     }
 
-    /* NEW SUBTITLE CSS FOR DIAT ACKNOWLEDGEMENT */
     .header .subtitle {
       margin: 6px 0 0 0;
       font-size: 13px;
@@ -78,14 +77,14 @@
     }
 
     /* MAIN LAYOUT */
-  .main {
+    .main {
       flex: 1;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 30px;
       padding: 20px 40px;
       align-items: center;
-      margin-bottom: 110px; /* INCREASED from 80px to give text more room */
+      margin-bottom: 110px; /* FIXED: Increased space so text doesn't hide behind chat bar */
     }
 
     /* LEFT TEXT PANEL */
@@ -126,13 +125,13 @@
     }
 
     /* CHAT INPUT BAR */
-   .chat-bar {
+    .chat-bar {
       display: flex;
       gap: 10px;
       padding: 15px 40px;
       background: rgba(0,0,0,0.9);
       position: fixed;
-      bottom: 90px; /* INCREASED from 60px to push it above the footer */
+      bottom: 80px; /* FIXED: Pushed up higher to avoid the team footer */
       left: 0;
       right: 0;
       border-top: 1px solid rgba(255,255,255,0.1);
@@ -169,7 +168,7 @@
       width: 100%;
       background: rgba(0, 0, 0, 0.95);
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 10px 0;
+      padding: 15px 0; /* Slightly taller for breathing room */
       z-index: 30;
     }
 
@@ -199,57 +198,25 @@
       white-space: nowrap;
     }
 
-    /* --- MOBILE RESPONSIVENESS (FIXES) --- */
+    /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 900px) {
-      body {
-        overflow-y: auto;
-      }
-      
-      /* Adjust feedback button for mobile */
-      .feedback-link {
-        top: 10px;
-        right: 10px;
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-
-      .header {
-        width: 90%;
-        margin-top: 50px; /* Push header down slightly so feedback button doesn't overlap */
-      }
-      .header h1 {
-        font-size: 18px;
-      }
-      .header .subtitle {
-        font-size: 11px; 
-      }
-      .main {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        margin-bottom: 180px;
-        text-align: center;
-      }
-      .text-panel {
-        justify-content: center;
-      }
-      .answer {
-        max-height: 40vh;
-        font-size: 16px;
-        margin: 0 auto;
-      }
-      #avatar-container {
-        max-width: 300px;
-        height: 300px;
-      }
-      .chat-bar {
-        padding: 10px 15px;
-        bottom: 80px;
-      }
-      .team-grid span {
-        font-size: 9px;
-      }
+      body { overflow-y: auto; }
+      .feedback-link { top: 10px; right: 10px; padding: 8px 12px; font-size: 12px; }
+      .header { width: 90%; margin-top: 50px; }
+      .header h1 { font-size: 18px; }
+      .header .subtitle { font-size: 11px; }
+      .main { grid-template-columns: 1fr; padding: 20px; margin-bottom: 180px; text-align: center; }
+      .text-panel { justify-content: center; }
+      .answer { max-height: 40vh; font-size: 16px; margin: 0 auto; }
+      #avatar-container { max-width: 300px; height: 300px; }
+      .chat-bar { padding: 10px 15px; bottom: 80px; }
+      .team-grid span { font-size: 9px; }
     }
   </style>
+  <script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   
