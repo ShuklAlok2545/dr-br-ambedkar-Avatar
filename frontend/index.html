@@ -78,14 +78,14 @@
     }
 
     /* MAIN LAYOUT */
-    .main {
+  .main {
       flex: 1;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 30px;
       padding: 20px 40px;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 110px; /* INCREASED from 80px to give text more room */
     }
 
     /* LEFT TEXT PANEL */
@@ -126,13 +126,13 @@
     }
 
     /* CHAT INPUT BAR */
-    .chat-bar {
+   .chat-bar {
       display: flex;
       gap: 10px;
       padding: 15px 40px;
       background: rgba(0,0,0,0.9);
       position: fixed;
-      bottom: 60px;
+      bottom: 90px; /* INCREASED from 60px to push it above the footer */
       left: 0;
       right: 0;
       border-top: 1px solid rgba(255,255,255,0.1);
@@ -303,8 +303,8 @@
       <span>Lucky Yadav (2023BITE031)</span>
       <span>Abhay Kumar (2023BITE023)</span>
     </div>
-    <div style="text-align: center; margin-top: 8px;">
-   <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fambedkar-rag-backend.vercel.app&count_bg=%232C2B2B&title_bg=%23000000&icon=&icon_color=%23E7E7E7&title=Visitors&edge_flat=true" alt="Live Visitor Count">
+   <div style="text-align: center; margin-top: 8px;">
+     <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fambedkar-rag-backend.vercel.app&countColor=%232C2B2B" alt="Live Visitor Count">
    </div>
   </div>
 
