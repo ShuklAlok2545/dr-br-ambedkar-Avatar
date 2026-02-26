@@ -77,14 +77,14 @@
     }
 
     /* MAIN LAYOUT */
-    .main {
+   .main {
       flex: 1;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 30px;
       padding: 20px 40px;
       align-items: center;
-      margin-bottom: 110px; /* FIXED: Increased space so text doesn't hide behind chat bar */
+      margin-bottom: 150px; /* INCREASED from 110px so the avatar/text doesn't get covered */
     }
 
     /* LEFT TEXT PANEL */
@@ -125,17 +125,17 @@
     }
 
     /* CHAT INPUT BAR */
-    .chat-bar {
+   .chat-bar {
       display: flex;
       gap: 10px;
       padding: 15px 40px;
       background: rgba(0,0,0,0.9);
       position: fixed;
-      bottom: 80px; /* FIXED: Pushed up higher to avoid the team footer */
+      bottom: 120px; /* INCREASED from 80px to push it completely above the new taller footer */
       left: 0;
       right: 0;
       border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 20;
+      z-index: 40; /* INCREASED from 20 so the chat bar stays on top of the footer (z-index: 30) */
     }
 
     .chat-bar input {
