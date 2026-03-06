@@ -3,6 +3,14 @@ import { GLTFLoader } from "https://unpkg.com/three@0.158.0/examples/jsm/loaders
 import { DRACOLoader } from "https://unpkg.com/three@0.158.0/examples/jsm/loaders/DRACOLoader.js";
 import { OrbitControls } from "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js";
 
+// --- NEW: Ask for name on load and save it to the browser session ---
+let userName = sessionStorage.getItem("ambedkar_user_name");
+if (!userName) {
+    userName = prompt("Welcome! Please enter your name (e.g., Dr. Sharma, Prof. Kumar):") || "Anonymous User";
+    sessionStorage.setItem("ambedkar_user_name", userName);
+}
+// -------------------------------------------------------------------
+
 let mixer;
 let talkingAction;
 const clock = new THREE.Clock();
@@ -28,18 +36,23 @@ window.askQuestion = async function () {
   const question = questionInput.value;
   if (!question) return;
 
-  // 2. CLEAR INPUT IMMEDIATELY
+  // CLEAR INPUT IMMEDIATELY
   questionInput.value = ""; 
 
   const answerDiv = document.getElementById("answer");
   answerDiv.innerText = "Thinking...";
 
   try {
+    // --- NEW: Attach the user's name to the question for the database! ---
+    const taggedQuestion = `[Asked by ${userName}]: ${question}`;
+
     const response = await fetch("https://ambedkar-api.onrender.com/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question })
+        body: JSON.stringify({ question: taggedQuestion }) 
     });
+    // ---------------------------------------------------------------------
+
     const data = await response.json();
     const answer = data.answer || "No answer returned";
     
