@@ -1,3 +1,4 @@
+import certifi
 import os
 import json
 import time
@@ -18,7 +19,8 @@ chat_collection = None
 
 if MONGO_URI:
     try:
-        client = MongoClient(MONGO_URI)
+        # We add tlsCAFile=certifi.where() to fix the SSL handshake error!
+        client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
         db = client["ambedkar_ai"] 
         chat_collection = db["interactions"] 
         print("✅ Successfully connected to MongoDB!")
