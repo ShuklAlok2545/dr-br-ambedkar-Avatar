@@ -6,7 +6,7 @@ import { OrbitControls } from "https://unpkg.com/three@0.158.0/examples/jsm/cont
 // --- NEW: Ask for name on load and save it to the browser session ---
 let userName = sessionStorage.getItem("ambedkar_user_name");
 if (!userName) {
-    userName = prompt("Welcome! Please enter your name (e.g., Dr. Sharma, Prof. Kumar):") || "Anonymous User";
+    userName = prompt("Welcome! Please enter your name :") || "Anonymous User";
     sessionStorage.setItem("ambedkar_user_name", userName);
 }
 // -------------------------------------------------------------------
