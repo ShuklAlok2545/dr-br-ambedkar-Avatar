@@ -3,12 +3,27 @@ import json
 import time
 import requests
 from dotenv import load_dotenv
+from datetime import datetime
+from pymongo import MongoClient
 
 # --- LIBRARIES ---
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
 
 load_dotenv()
+
+# --- MONGODB SETUP ---
+MONGO_URI = os.getenv("MONGO_URI")
+chat_collection = None
+
+if MONGO_URI:
+    try:
+        client = MongoClient(MONGO_URI)
+        db = client["ambedkar_ai"] 
+        chat_collection = db["interactions"] 
+        print("✅ Successfully connected to MongoDB!")
+    except Exception as e:
+        print(f"⚠️ MongoDB Connection Error: {e}")
 
 # --- CONFIGURATION ---
 DATA_FILE = "prepared_chunks.json"
@@ -104,8 +119,24 @@ def answer_question(question):
             
             if response.status_code == 200:
                 result = response.json()
+                final_answer = result['candidates'][0]['content']['parts'][0]['text']
+                
+                # --- SAVE TO MONGODB ---
+                if chat_collection is not None:
+                    try:
+                        chat_collection.insert_one({
+                            "question": question,
+                            "answer": final_answer,
+                            "timestamp": datetime.utcnow()
+                        })
+                        print("   📝 Interaction logged to database.")
+                    except Exception as e:
+                        print(f"   ⚠️ Failed to log interaction: {e}")
+                # -----------------------
+
                 print(f"   ✅ Success!")
-                return result['candidates'][0]['content']['parts'][0]['text']
+                return final_answer
+                
             elif response.status_code == 429:
                 print("   ⏳ Rate Limit. Waiting 2s...")
                 time.sleep(2)

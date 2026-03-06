@@ -6,3 +6,4 @@ langchain-community
 rank_bm25
 requests
 gTTS
+pymongo==4.6.1

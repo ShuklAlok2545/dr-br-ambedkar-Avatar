@@ -9,7 +9,7 @@ const clock = new THREE.Clock();
 const synth = window.speechSynthesis;
 
 function speakWithMaleVoice(text) {
-  const cleanText = text.replace(/[.*#_~]/g, ''); 
+  const cleanText = text.replace(/[*#_~]/g, ''); 
   synth.cancel();
   const utterance = new SpeechSynthesisUtterance(cleanText);
   const voices = synth.getVoices();
@@ -26,8 +26,6 @@ function speakWithMaleVoice(text) {
 window.askQuestion = async function () {
   const questionInput = document.getElementById("question");
   const question = questionInput.value;
-  
-  // 1. Check if empty
   if (!question) return;
 
   // 2. CLEAR INPUT IMMEDIATELY
